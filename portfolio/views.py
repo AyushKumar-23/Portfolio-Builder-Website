@@ -223,7 +223,7 @@ class ServiceUpdate(UpdateView):
 
 class Reviews(CreateView,ListView):
     model = models.Reviews
-    form_class = forms.ServiceForm
+    form_class = forms.ReviewForm
     context_object_name = "reviews"
     template_name = "portfolio/reviews.html"
     success_url = "/reviews"
@@ -291,7 +291,7 @@ def download_template_with_content(request):
     work_data = models.Work.objects.filter(user=request.user)
     services_data = models.Services.objects.filter(user=request.user)
     reviews_data = models.Reviews.objects.filter(user=request.user)
-    resume_data = models.Resume.objects.filter(user=request.user)
+    accounts_data = models.Accounts.objects.filter(user=request.user).order_by('-latest')
 
 
     # Load the template using the template loader
@@ -306,6 +306,7 @@ def download_template_with_content(request):
     work_data_dicts = [model_to_dict(instance) for instance in work_data]
     services_data_dicts = [model_to_dict(instance) for instance in services_data]
     reviews_data_dicts = [model_to_dict(instance) for instance in reviews_data]
+    accounts_data_dicts = [model_to_dict(instance) for instance in accounts_data]
     # resume_data_dicts = [model_to_dict(instance) for instance in resume_data]
 
 
@@ -319,6 +320,7 @@ def download_template_with_content(request):
         'work':work_data_dicts,
         'services':services_data_dicts,
         'reviews':reviews_data_dicts,
+        'accounts':accounts_data_dicts,
         # 'resume':resume_data_dicts
         })
 

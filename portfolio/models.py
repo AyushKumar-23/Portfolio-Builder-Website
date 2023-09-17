@@ -29,15 +29,15 @@ class Education(models.Model):
     universityName = models.CharField(max_length=256)
     branch = models.CharField(max_length=50)
     percentage = models.IntegerField(default=0)
-    startYear = models.CharField(max_length=4,default="XXXX")
-    endYear = models.CharField(max_length=4,default="XXXX")
+    startYear = models.CharField(max_length=20,default="XXXX")
+    endYear = models.CharField(max_length=20,default="XXXX")
 
 class Experience(models.Model):
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
     companyName = models.CharField(max_length=256)
     jobRole = models.CharField(max_length=50)
-    startYear = models.CharField(max_length=4,default="XXXX")
-    endYear = models.CharField(max_length=4,default="XXXX")
+    startYear = models.CharField(max_length=20,default="XXXX")
+    endYear = models.CharField(max_length=20,default="XXXX")
     githubRepo = models.URLField(blank=True,null=True)
 
 class Work(models.Model):

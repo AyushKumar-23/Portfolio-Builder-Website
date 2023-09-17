@@ -494,19 +494,19 @@
         {% for accounts in accounts %}
         {% if forloop.first %}
         {% if accounts.linkdin %}
-        <a href="#" class="account" target=”_blank”><i class="lab la-linkedin rounded-4"></i>LinkedIn</a>
+        <a href={{accounts.linkdin}} class="account" target=”_blank”><i class="lab la-linkedin rounded-4"></i>LinkedIn</a>
         {% endif %}
         {% if accounts.github %}
-        <a href="#" class="account" target=”_blank”><i class="lab la-github rounded-4"></i>GitHub</a>
+        <a href={{accounts.github}} class="account" target=”_blank”><i class="lab la-github rounded-4"></i>GitHub</a>
         {% endif %}
         {% if accounts.leetcode %}
-        <a href="#" class="account" target=”_blank”><i class="las la-code rounded-4"></i>LeetCode</a>
+        <a href={{accounts.leetcode}} class="account" target=”_blank”><i class="las la-code rounded-4"></i>LeetCode</a>
         {% endif %}
         {% if accounts.codechef %}
-        <a href="#" class="account" target=”_blank”><i class="las la-closed-captioning rounded-4"></i>CodeChef</a>
+        <a href={{accounts.codechef}} class="account" target=”_blank”><i class="las la-closed-captioning rounded-4"></i>CodeChef</a>
         {% endif %}
         {% if accounts.hackerrank %}
-        <a href="#" class="account" target=”_blank”><i
+        <a href={{accounts.hackerrank}} class="account" target=”_blank”><i
                 class="lab la-hackerrank rounded-4"></i><span>HackerRank</span></a>
         {% endif %}
         {% endif %}
