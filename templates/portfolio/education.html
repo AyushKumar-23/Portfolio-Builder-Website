@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="outerContainer">
+    <div class="innerContainer">
+        <div class="image-container" data-light-image="/static/images/eduDark.svg" data-dark-image="/static/images/eduLight.svg">
+            <img id="eduImage" class="imgContainer" src="" alt="">
+        </div>
+        <div class="btnContainer">
+            <!-- CREATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropIntroCreate">
+                ADD EDUCATION DETAILS
+            </button>
+
+            <div class="modal fade" id="staticBackdropIntroCreate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntroCreate" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="modal-content" data-bs-theme="dark">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntroCreate">ADD EDUCATION DETAILS
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="id_universityName">UniversityName:</label>
+                                    <input class="form-control" type="text" name="universityName" maxlength="256"
+                                        required="" id="id_universityName">
+                                </div>
+                                <div>
+                                    <label for="id_branch">Branch:</label>
+                                    <input class="form-control" type="text" name="branch" maxlength="50" required=""
+                                        id="id_branch">
+                                </div>
+                                <div>
+                                    <label for="id_percentage">Percentage:</label>
+                                    <input class="form-control" type="number" name="percentage" value="0" required=""
+                                        id="id_percentage">
+                                </div>
+                                <div>
+                                    <label for="id_startYear">StartYear:</label>
+                                    <input class="form-control" type="text" name="startYear" value="XXXX" maxlength="4"
+                                        required="" id="id_startYear">
+                                </div>
+                                <div>
+                                    <label for="id_endYear">EndYear:</label>
+                                    <input class="form-control" type="text" name="endYear" value="XXXX" maxlength="4"
+                                        required="" id="id_endYear">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DELETE INTRO -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropDeleteIntro">
+                DELETE EDUCATION DETAILS
+            </button>
+
+            <div class="modal fade" id="staticBackdropDeleteIntro" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntro" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleDeleteIntro" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntro">DELETE EDUCATION DETAILS
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for education in education %}
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+
+                                        <div>
+                                            <label>UniversityName:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.universityName}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>Branch:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.branch}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>Percentage:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.percentage}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>StartYear:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.startYear}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>EndYear:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.endYear}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <form action="{% url 'educationDelete' education.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="submit deleteButton" type="submit" value="Delete">Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPDATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+                UPDATE EDUCATION DETAILS
+            </button>
+
+            <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleUpdate" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">UPDATE EDUCATION DETAILS</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for education in education %}
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+
+                                        <div>
+                                            <label>UniversityName:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.universityName}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>Branch:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.branch}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>Percentage:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.percentage}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>StartYear:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.startYear}}" maxlength="256" disabled>
+                                        </div>
+
+                                        <div>
+                                            <label>EndYear:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder="{{education.endYear}}" maxlength="256" disabled>
+                                        </div>
+
+
+
+                                        <a href="{% url 'educationUpdate' education.id %}"
+                                            style="text-decoration: none;">
+                                            <button class="submit deleteButton" type="submit">
+                                                Click Here, If You Want To Update This Record!
+                                            </button>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

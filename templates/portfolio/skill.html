@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="outerContainer">
+    <div class="innerContainer">
+        <div class="image-container" data-light-image="/static/images/skillDark.svg"
+            data-dark-image="/static/images/skillLight.svg">
+            <img id="introImage" class="imgContainer" src="" alt="">
+        </div>
+        <div class="btnContainer">
+            <!-- LIST VIEW -->
+
+            <!-- CREATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                ADD SKILL
+            </button>
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="modal-content" data-bs-theme="dark">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Skill</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="id_skill">Skill:</label>
+                                    <input class="form-control" type="text" name="skill" maxlength="30" required=""
+                                        id="id_skill" placeholder="Skill">
+                                </div>
+                                <div>
+                                    <label for="id_expertise">Expertise:</label>
+                                    <input class="form-control" type="number" name="expertise" value="0" min="0"
+                                        required="" id="id_expertise" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DELETE SKILL -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropDelete">
+                DELETE SKILL
+            </button>
+
+            <div class="modal fade" id="staticBackdropDelete" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleDelete" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Skill</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <div class="carousel-inner">
+                                    {% for skill in skills %}
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+                                        <span>Skill:</span>
+                                        <div class="form-control disabledInput" type="text"
+                                            aria-label="Disabled input example" disabled>{{skill.skill}}</div>
+
+                                        <span>TechLevel:</span>
+                                        <div class="form-control disabledInput" type="text"
+                                            aria-label="Disabled input example" disabled>{{skill.expertise}}</div>
+                                        <form action="{% url 'skillDelete' skill.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="submit deleteButton" type="submit" value="Delete">Delete
+                                                Skill</button>
+                                        </form>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDelete" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDelete" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPDATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+                UPDATE SKILL
+            </button>
+
+            <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleUpdate" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Skill</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <div class="carousel-inner">
+                                    {% for skill in skills %}
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+                                        <div>
+                                            <span for="updateSkill">Skill:</span>
+                                            <div class="form-control disabledInput" type="text" maxlength="30"
+                                                required="" disabled>{{skill.skill}}</div>
+                                        </div>
+
+                                        <div>
+                                            <span for="updateExpertise">Expertise:</span>
+                                            <div class="form-control disabledInput" type="number" min="0" required=""
+                                                disabled>{{skill.expertise}}</div>
+                                        </div>
+
+                                        <a href="{% url 'skillUpdate' skill.id %}" style="text-decoration: none;">
+                                            <button class="submit deleteButton" type="submit">
+                                                Click Here, If You Want To Update This Record!
+                                            </button>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

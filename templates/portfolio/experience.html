@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="outerContainer">
+    <div class="innerContainer">
+        <div class="image-container" data-light-image="/static/images/expDark.svg"
+            data-dark-image="/static/images/expLight.svg">
+            <img id="introImage" class="imgContainer" src="" alt="">
+        </div>
+        <div class="btnContainer">
+            <!-- CREATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropIntroCreate">
+                ADD EXPERIENCE
+            </button>
+
+            <div class="modal fade" id="staticBackdropIntroCreate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntroCreate" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="modal-content" data-bs-theme="dark">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntroCreate">ADD EXPERIENCE DETAILS
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="id_companyName">CompanyName:</label>
+                                    <input class="form-control" type="text" name="companyName" maxlength="256"
+                                        required="" id="id_companyName">
+                                </div>
+                                <div>
+                                    <label for="id_jobRole">JobRole:</label>
+                                    <input class="form-control" type="text" name="jobRole" maxlength="50" required=""
+                                        id="id_jobRole">
+                                </div>
+                                <div>
+                                    <label for="id_githubRepo">GithubRepo/HostedLink:</label>
+                                    <input class="form-control" type="url" name="githubRepo" maxlength="200"
+                                        id="id_githubRepo">
+                                </div>
+                                <div>
+                                    <label for="id_startYear">StartYear:</label>
+                                    <input class="form-control" type="text" name="startYear" value="XXXX" maxlength="4"
+                                        required="" id="id_startYear">
+                                </div>
+                                <div>
+                                    <label for="id_endYear">EndYear:</label>
+                                    <input class="form-control" type="text" name="endYear" value="XXXX" maxlength="4"
+                                        required="" id="id_endYear">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DELETE INTRO -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropDeleteIntro">
+                DELETE EXPERIENCE
+            </button>
+
+            <div class="modal fade" id="staticBackdropDeleteIntro" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntro" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleDeleteIntro" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntro">DELETE EXPERIENCE</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for exp in experience %}
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+
+                                        <div>
+                                            <label>CompanyName:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.companyName}}
+                                                type="text" disabled>
+                                        </div>
+                                        <div>
+                                            <label>JobRole:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.jobRole}}
+                                                type="text" disabled>
+                                        </div>
+                                        <div>
+                                            <label>GithubRepo/HostedLink:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.githubRepo}}
+                                                type="url" disabled>
+                                        </div>
+                                        <div>
+                                            <label>StartYear:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.startYear}}
+                                                type="text" disabled>
+                                        </div>
+                                        <div>
+                                            <label>EndYear:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.endYear}}
+                                                type="text" disabled>
+                                        </div>
+
+                                        <form action="{% url 'experienceDelete' exp.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="submit deleteButton" type="submit" value="Delete">DELETE
+                                                EXPERIENCE</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPDATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+                UPDATE EXPERIENCE DETAILS
+            </button>
+
+            <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleUpdate" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Experience Details</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for exp in experience %}
+
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+
+                                        <div>
+                                            <label>CompanyName:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.companyName}}
+                                                type="text" disabled>
+                                        </div>
+                                        <div>
+                                            <label>JobRole:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.jobRole}}
+                                                type="text" disabled>
+                                        </div>
+                                        <div>
+                                            <label>GithubRepo/HostedLink:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.githubRepo}}
+                                                type="url" disabled>
+                                        </div>
+                                        <div>
+                                            <label>StartYear:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.startYear}}
+                                                type="text" disabled>
+                                        </div>
+                                        <div>
+                                            <label>EndYear:</label>
+                                            <input class="form-control disabledInput" placeholder={{exp.endYear}}
+                                                type="text" disabled>
+                                        </div>
+                                        <a href="{% url 'experienceUpdate' exp.id %}" style="text-decoration: none;">
+                                            <button class="submit deleteButton" type="submit">
+                                                Click Here, If You Want To Update This Record!
+                                            </button>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

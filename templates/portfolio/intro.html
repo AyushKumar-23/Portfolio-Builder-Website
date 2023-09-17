@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="outerContainer">
+    <div class="innerContainer">
+        <div class="image-container" data-light-image="/static/images/introDark.svg"
+            data-dark-image="/static/images/introLight.svg">
+            <img id="introImage" class="imgContainer" src="" alt="">
+        </div>
+        <div class="btnContainer">
+            <!-- CREATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropIntroCreate">
+                ADD INTRODUCTION
+            </button>
+
+            <div class="modal fade" id="staticBackdropIntroCreate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntroCreate" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="modal-content" data-bs-theme="dark">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntroCreate">Add
+                                    Introduction
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="id_name">Name:</label>
+                                    <input class="form-control" type="text" name="name" maxlength="128" required=""
+                                        id="id_name">
+                                </div>
+                                <div>
+                                    <label for="id_jobRole">JobRole:</label>
+                                    <input class="form-control" type="text" name="jobRole" maxlength="128" required=""
+                                        id="id_jobRole">
+                                </div>
+                                <div>
+                                    <label for="id_location">Location:</label>
+                                    <input class="form-control" type="text" name="location" maxlength="128" required=""
+                                        id="id_location">
+                                </div>
+                                <div>
+                                    <label for="id_phoneNo">PhoneNo:</label>
+                                    <input class="form-control" type="text" name="phoneNo" maxlength="13" required=""
+                                        id="id_phoneNo">
+                                </div>
+                                <div>
+                                    <label for="id_shortSummary">ShortSummary:</label>
+                                    <textarea class="form-control" name="shortSummary" cols="40" rows="10" required=""
+                                        id="id_shortSummary"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DELETE INTRO -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropDeleteIntro">
+                DELETE INTRODUCTION
+            </button>
+
+            <div class="modal fade" id="staticBackdropDeleteIntro" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntro" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleDeleteIntro" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntro">Delete Introduction
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <div class="carousel-inner">
+                                    {% for intro in introduction %}
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+
+                                        <label>Name:</label>
+                                        <input class="form-control disabledInput" type="text" placeholder={{intro.name}}
+                                            aria-label="Disabled input example" disabled>
+
+
+                                        <label>JobRole:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{intro.jobRole}} aria-label="Disabled input example" disabled>
+
+
+                                        <label>Location:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{intro.location}} aria-label="Disabled input example" disabled>
+
+
+                                        <label>PhoneNo:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{intro.phoneNo}} aria-label="Disabled input example" disabled>
+
+
+                                        <label>ShortSummary:</label>
+                                        <textarea class="form-control disabledInput" type="text"
+                                            placeholder={{intro.shortSummary}} aria-label="Disabled input example"
+                                            disabled></textarea>
+
+                                        <form action="{% url 'introDelete' intro.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="submit deleteButton" type="submit" value="Delete">Delete
+                                                Introduction</button>
+                                        </form>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPDATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+                UPDATE INTRODUCTION
+            </button>
+
+            <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleUpdate" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Introduction</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for intro in introduction %}
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+
+                                        <label>Name:</label>
+                                        <input class="form-control disabledInput" type="text" placeholder={{intro.name}}
+                                            aria-label="Disabled input example" disabled>
+
+
+                                        <label>JobRole:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{intro.jobRole}} aria-label="Disabled input example" disabled>
+
+
+                                        <label>Location:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{intro.location}} aria-label="Disabled input example" disabled>
+
+
+                                        <label>PhoneNo:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{intro.phoneNo}} aria-label="Disabled input example" disabled>
+
+
+                                        <label>ShortSummary:</label>
+                                        <textarea class="form-control disabledInput" type="text"
+                                            placeholder={{intro.shortSummary}} aria-label="Disabled input example"
+                                            disabled></textarea>
+                                        <a href="{% url 'introUpdate' intro.id %}">
+                                            <button class="submit deleteButton" type="submit">
+                                                Click Here, If You Want To Update This Record!
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}

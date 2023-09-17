@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="homeContainer">
+    <div class="row">
+        <div class="image-container col-md-6 col-sm-12 my-6 d-md-none" data-light-image="/static/images/homeDark.svg"
+            data-dark-image="/static/images/homeLight.svg" style="width: 100%;">
+            <img class="imgContainer" src="" alt="" style="width: 100%;">
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <h1 class="display-4 fw-bold text">Showcase your work online with a portfolio website</h1>
+            <p class="lead mt-2">From intuitive design features to built-in marketing tools, discover the complete
+                solution for building a portfolio that stands out online.</p>
+            <a class="link-custom" href="{% url 'dummy_portfolio' %}" target="_blank">To View Our Dummy Portfolio,
+                Click Here!</a>
+            <div>
+                <a href="{% url 'download' %}" class="btn btn-brand startBtn">
+                    Get Started
+                </a>
+            </div>
+        </div>
+        <div class="image-container col-md-6 col-sm-12 d-md-block d-none" data-light-image="/static/images/homeDark.svg"
+            data-dark-image="/static/images/homeLight.svg">
+            <img class="imgContainer homeImage" src="" alt="">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="outerContainer">
+    <div class="innerContainer" style="display:flex; flex-direction: column; align-items: center; justify-content:center;">
+        <div class="pb-4">
+            <h1>To upload your resume file, follow the steps!</h1>
+        </div>
+        <div>
+            <img src="/static/images/resume.svg" alt="resume">
+        </div>
+        <div class="pb-4 mt-4">
+            <h1>To upload your profile picture, follow the steps!</h1>
+        </div>
+        <div>
+            <img src="/static/images/profilePic.svg" alt="profilePic">
+        </div>
+    </div>
+</div>
+{% endblock %}

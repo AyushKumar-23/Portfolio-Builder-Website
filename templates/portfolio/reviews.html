@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="outerContainer">
+    <div class="innerContainer">
+        <div class="image-container" data-light-image="/static/images/reviewDark.svg"
+            data-dark-image="/static/images/reviewLight.svg">
+            <img id="introImage" class="imgContainer" src="" alt="">
+        </div>
+        <div class="btnContainer">
+            <!-- CREATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropIntroCreate">
+                ADD REVIEW
+            </button>
+
+            <div class="modal fade" id="staticBackdropIntroCreate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntroCreate" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="modal-content" data-bs-theme="dark">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntroCreate">ADD SERVICE DETAILS
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="id_stars">Stars:</label>
+                                    <input class="form-control" type="number" name="stars" value="0" max="5" min="0"
+                                        id="id_stars">
+                                </div>
+                                <div>
+                                    <label for="id_review">Review:</label>
+                                    <textarea class="form-control" name="review" cols="40" rows="10" required=""
+                                        id="id_review"></textarea>
+                                </div>
+                                <div>
+                                    <label for="id_reviewerName">ReviewerName:</label>
+                                    <input class="form-control" type="text" name="reviewerName" maxlength="50"
+                                        required="" id="id_reviewerName">
+                                </div>
+                                <div>
+                                    <label for="id_platform">Platform:</label>
+                                    <input class="form-control" type="text" name="platform" maxlength="20" required=""
+                                        id="id_platform">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DELETE INTRO -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropDeleteIntro">
+                DELETE REVIEW
+            </button>
+
+            <div class="modal fade" id="staticBackdropDeleteIntro" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabelIntro" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleDeleteIntro" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabelIntro">DELETE REVIEW</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for review in reviews %}
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+                                        <div>
+                                            <label>Stars:</label>
+                                            <input class="form-control disabledInput" disabled
+                                                placeholder={{review.stars}} type="number">
+                                        </div>
+                                        <div>
+                                            <label>Review:</label>
+                                            <textarea class="form-control disabledInput" disabled
+                                                placeholder={{review.review}}></textarea>
+                                        </div>
+                                        <div>
+                                            <label>Reviewer Name:</label>
+                                            <input type="text" class="form-control disabledInput" disabled
+                                                placeholder={{review.reviewerName}}>
+                                        </div>
+                                        <div>
+                                            <label>Platform:</label>
+                                            <input type="text" class="form-control disabledInput" disabled
+                                                placeholder={{review.platform}}>
+                                        </div>
+
+                                        <form action="{% url 'reviewDelete' review.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="submit deleteButton" type="submit" value="Delete">DELETE
+                                                REVIEW</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDeleteIntro" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPDATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+                UPDATE REVIEW DETAILS
+            </button>
+
+            <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleUpdate" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">UPDATE REVIEW</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for review in reviews %}
+
+
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+
+                                        <div>
+                                            <label>Stars:</label>
+                                            <input class="form-control disabledInput" disabled
+                                                placeholder={{review.stars}} type="number">
+                                        </div>
+                                        <div>
+                                            <label>Review:</label>
+                                            <textarea class="form-control disabledInput" disabled
+                                                placeholder={{review.review}}></textarea>
+                                        </div>
+                                        <div>
+                                            <label>Reviewer Name:</label>
+                                            <input type="text" class="form-control disabledInput" disabled
+                                                placeholder={{review.reviewerName}}>
+                                        </div>
+                                        <div>
+                                            <label>Platform:</label>
+                                            <input type="text" class="form-control disabledInput" disabled
+                                                placeholder={{review.platform}}>
+                                        </div>
+
+                                        <a href="{% url 'reviewUpdate' review.id %}" style="text-decoration: none;">
+                                            <button class="submit deleteButton" type="submit">
+                                                Click Here, If You Want To Update This Record!
+                                            </button>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

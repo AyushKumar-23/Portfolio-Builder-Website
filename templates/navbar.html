@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-xl fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">P</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <div class="menu-container">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <a class="nav-link " href="{% url 'intro' %}"> Intro </a>
+                    <a class="nav-link " href="{% url 'skills' %}"> Skills </a>
+                    <a class="nav-link " href="{% url 'education'  %}"> Education </a>
+                    <a class="nav-link " href="{% url 'experience' %}"> Experience </a>
+                    <a class="nav-link " href="{% url 'projects' %}"> Projects </a>
+                    <a class="nav-link " href="{% url 'services'  %}"> Services </a>
+                    <a class="nav-link " href="{% url 'reviews'  %}"> Reviews </a>
+                    <a class="nav-link " href="{% url 'accounts'  %}"> Accounts </a>
+
+                    <a class="nav-link " href="{% url 'resume'  %}"> Resume </a>
+                    <a class="nav-link " href="{% url 'download'  %}"> Guide </a>
+                    <a class="nav-link d-lg-none" href="{% url 'viewPortfolio' %}" target="_blank">View Portfolio</a>
+                    <a class="nav-link d-lg-none" href="{% url 'downloadPortfolio' %}">Download Portfolio</a>
+
+                    <li class="nav-item dropdown d-lg-none">
+                        <a class="nav-link dropdown-toggle d-lg-none" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{user.username}}
+                        </a>
+                        <ul class="dropdown-menu d-lg-none" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item d-lg-none" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <a class="nav-link d-lg-none" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                    <span id="theme-toggle" style="margin-left: 2%; margin-top: 0.5%; margin-right: 2%;">
+                        <i id="toggleDark" class="las la-sun"></i>
+                    </span>
+                </ul>
+            </div>
+            {% if user.is_authenticated %}
+            <a class="nav-link d-none d-lg-block" style="margin-left: 2%; margin-right: 0;"
+                href="{% url 'viewPortfolio' %}" target="_blank">View
+                Portfolio</a>
+            <a class="nav-link d-none d-lg-block" style="margin-left: 1%; margin-right: 0;"
+                href="{% url 'downloadPortfolio' %}">Download
+                Portfolio</a>
+            {% endif %}
+            <!-- <div id="theme-toggle" class="d-none d-lg-block" style="margin-right: 2%;">
+                <i id="toggleDark" class="las la-sun d-none d-lg-block"></i>
+            </div> -->
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown d-none d-lg-block" style="margin-left: 1%;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    {{user.username}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </li>
+            {% else %}
+            <a class="nav-link d-none d-lg-block" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

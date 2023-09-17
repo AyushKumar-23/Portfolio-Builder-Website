@@ -1,0 +1,725 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/stylePortfolio.css' %}" type="text/css">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarNav">
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container flex-lg-column">
+            <a class="navbar-brand mx-lg-auto" href="#">
+                <span class="h3 fw-bold d-block d-lg-none">John Doe</span>
+                <img src="/static/images/dp.png" class="d-none d-lg-block rounded-circle navbar-img" alt="">
+                <div>
+                    <i class="las la-envelope"></i><span class="email_id my-0 link-custom">JohnDoe@gmail.com</span>
+                </div>
+                <div>
+                    <i class="las la-phone"></i><span class="email_id my-0 link-custom">(+91) 98XXXXXXXX</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navbar-div ms-auto flex-lg-column text-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#work">Work</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#certificates">Certificates</a>
+                    </li> -->
+                    <li class="nav-item ">
+                        <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link js-scroll-trigger" href="#reviews">Reviews</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                    </li> -->
+                    <li class="nav-item js-scroll-trigger">
+                        <i id="toggleDark" class="las la-sun"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="account-icon">
+        <a href="#" class="account" target=”_blank”><i
+                class="lab la-linkedin rounded-4"></i>LinkedIn</a>
+        <a href="#" class="account" target=”_blank”><i
+                class="lab la-github rounded-4"></i>GitHub</a>
+        <a href="#" class="account" target=”_blank”><i
+                class="las la-code rounded-4"></i>LeetCode</a>
+        <a href="#" class="account" target=”_blank”><i
+                class="las la-closed-captioning rounded-4"></i>CodeChef</a>
+        <a href="#" class="account" target=”_blank”><i
+                class="lab la-hackerrank rounded-4"></i><span>HackerRank</span></a>
+    </div>
+
+    <div id="content-wrapper">
+        <section id="home" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <!-- <h1 class="display-4 fw-bold" data-aos="fade-up">I'M A <span class="text-brand">UI/UX DESIGNER</span> FROM DELHI, INDIA</h1> -->
+                        <h1 class="display-4 fw-bold" data-aos="fade-up">Hi! I'M <span class="text-brand">John Doe,
+                                FULLSTACK WEB DEVELOPER</span> FROM Delhi, INDIA</h1>
+                        <p class="lead mt-2 mb-4" data-aos="fade-up" data-aos-delay="300">Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Vero laboriosam, mollitia voluptatum non consequatur ipsum.
+                            Quo voluptatibus sequi molestiae nulla in facere deserunt doloribus, dolorum soluta expedita
+                            aliquid laborum? Hic.mollitia voluptatum non consequatur ipsum. Quo voluptatibus sequi
+                            molestiae nulla in facere deserunt doloribus, dolorum soluta expedita aliquid laborum?</p>
+                        <div data-aos="fade-up" data-aos-delay="600">
+                            <a href="./static/myapp/images/Ayush_Kumar_Resume.pdf"
+                                download="/static/myapp/images/version_control.png" class="btn btn-brand">
+                                Download CV
+                            </a>
+                            <!-- <a href="/static/myapp/images/Ayush_Kumar_Resume.pdf" class="link-custom ms-3" target="_blank">View CV</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+        <section id="skills" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+
+                    <div class="col-lg-8">
+                        <a href="/addskill">
+                            <h6 class="text-brand">
+                                SKILLS
+                            </h6>
+                        </a>
+                        <h1>My Technical Level</h1>
+                    </div>
+
+                    <div class="row gy-4">
+
+
+                        <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <h6 class="skill-heading">Python</h6>
+                            <div class="progress-animate">
+                                <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar " style="width: 85%">85%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <h6 class="skill-heading">Java</h6>
+                            <div class="progress-animate">
+                                <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar " style="width: 75%">75%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <h6 class="skill-heading">JavaScript</h6>
+                            <div class="progress-animate">
+                                <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar " style="width: 60%">60%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <h6 class="skill-heading">HTML</h6>
+                            <div class="progress-animate">
+                                <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar " style="width: 85%">85%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <h6 class="skill-heading">CSS</h6>
+                            <div class="progress-animate">
+                                <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar " style="width: 70%">70%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+        <section id="about" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">ABOUT</h6>
+                        <h1>My Education & Experience</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">Education</h3>
+                        <div class="row gy-4">
+
+                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
+                                <div class="bg-base p-4 rounded-4 shadow-effect about-card">
+                                    <h5>UNIVERSITY NAME
+                                    </h5>
+                                    <p class="text-brand mb-2">Branch</p>
+                                    <p class="mb-0"><span class="italics">CGPA- </span>X</p>
+                                    <i class="las la-calendar-week cal"></i><span
+                                        class="mb-0 italics date">Duration</span>
+                                </div>
+                            </div>
+
+                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
+                                <div class="bg-base p-4 rounded-4 shadow-effect about-card">
+                                    <h5>XYZ Public School</h5>
+                                    <p class="text-brand mb-2">class</p>
+                                    <p class="mb-0"><span class="italics">Percentage- </span>X%</p>
+                                    <i class="las la-calendar-week cal"></i><span
+                                        class="mb-0 italics date">Duration</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="/addexperience">
+                            <h3 class="experience mb-4" data-aos="fade-up" data-aos-delay="300">
+                                Experience</h3>
+                        </a>
+                        <div class="row gy-4">
+
+                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
+                                <div class="bg-base p-4 rounded-4 shadow-effect about-card">
+                                    <h5>Company Name</h5>
+                                    <p class="text-brand mb-2"></p>
+                                    <p class="mb-0 italics">Role</p>
+                                    <i class="las la-calendar-week cal"></i><span class="mb-0 italics date">Duration</span><br>
+                                    <a href="#" target=”_blank”><i
+                                            class="lab la-github cal"></i><span class="date link-custom">GitHub
+                                            Repository Link</span></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+        <section id="work" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <a href="/addwork">
+                            <h6 class="text-brand">WORK</h6>
+                        </a>
+                        <h1>My Recent Projects</h1>
+                    </div>
+                </div>
+
+                <div class="row gy-4">
+                    <div class="col-md-6">
+                        <div class="card-custom rounded-4 bg-base shadow-effect card-height" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <!-- <div class="card-custom-image rounded-4">
+                                <a href="https://github.com/AyushKumar-23/APOD-Viewer" target=”_blank”>
+                                    <img src="./static/myapp/images/apod.png" alt="" class="workImage-height rounded-4">
+                                </a>
+                            </div> -->
+                            <div class="card-custom-content p-4" data-aos="fade-up">
+                                <h4>Project 1</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia magni tenetur quisquam ex non sapiente sequi perspiciatis molestias incidunt libero, quaerat architecto, tempora quam recusandae accusamus voluptate ullam dolor.
+                                Fugiat inventore reiciendis suscipit ratione cum aut, debitis eius sed! Veniam amet reprehenderit at aut dignissimos aliquid id architecto, atque esse eaque eum facilis repellat quidem laudantium possimus totam voluptas.</p>
+                                <a href="#" target=”_blank”><i
+                                        class="lab la-github cal"></i><span class="date link-custom">GitHub Repository
+                                        Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-custom rounded-4 bg-base shadow-effect card-height" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <!-- <div class="card-custom-image rounded-4">
+                                <a href="https://github.com/AyushKumar-23/Gravity_Simulator" target=”_blank”>
+                                    <img src="./static/myapp/images/gravity_simulator.png" alt=""
+                                        class="workImage-height rounded-4">
+                                </a>
+                            </div> -->
+                            <div class="card-custom-content p-4" data-aos="fade-up">
+                                <h4>Project 2</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia magni tenetur quisquam ex non sapiente sequi perspiciatis molestias incidunt libero, quaerat architecto, tempora quam recusandae accusamus voluptate ullam dolor.
+                                Fugiat inventore reiciendis suscipit ratione cum aut, debitis eius sed! Veniam amet reprehenderit at aut dignissimos aliquid id architecto, atque esse eaque eum facilis repellat quidem laudantium possimus totam voluptas.</p>
+                                <a href="#" target=”_blank”><i
+                                        class="lab la-github cal"></i><span class="date link-custom">GitHub Repository
+                                        Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-custom rounded-4 bg-base shadow-effect card-height" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <!-- <div class="card-custom-image rounded-4">
+                                <a href="https://github.com/AyushKumar-23/Netflix_Clone" target=”_blank”>
+                                    <img src="./static/myapp/images/morse_code.png" alt=""
+                                        class="workImage-height rounded-4">
+                                </a>
+                            </div> -->
+                            <div class="card-custom-content p-4" data-aos="fade-up">
+                                <h4>Project 3</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia magni tenetur quisquam ex non sapiente sequi perspiciatis molestias incidunt libero, quaerat architecto, tempora quam recusandae accusamus voluptate ullam dolor.
+                                Fugiat inventore reiciendis suscipit ratione cum aut, debitis eius sed! Veniam amet reprehenderit at aut dignissimos aliquid id architecto, atque esse eaque eum facilis repellat quidem laudantium possimus totam voluptas.</p>
+                                <a href="#" target=”_blank”><i
+                                        class="lab la-github cal"></i><span class="date link-custom">GitHub Repository
+                                        Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-custom rounded-4 bg-base shadow-effect card-height" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <!-- <div class="card-custom-image rounded-4">
+                                <a href="https://github.com/AyushKumar-23/Morse_Code_Translator" target=”_blank”>
+                                    <img src="./static/myapp/images/morse_code.png" alt=""
+                                        class="workImage-height rounded-4">
+                                </a>
+                            </div> -->
+                            <div class="card-custom-content p-4" data-aos="fade-up">
+                                <h4>Project 4</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia magni tenetur quisquam ex non sapiente sequi perspiciatis molestias incidunt libero, quaerat architecto, tempora quam recusandae accusamus voluptate ullam dolor.
+                                Fugiat inventore reiciendis suscipit ratione cum aut, debitis eius sed! Veniam amet reprehenderit at aut dignissimos aliquid id architecto, atque esse eaque eum facilis repellat quidem laudantium possimus totam voluptas.</p>
+                                <a href="#" target=”_blank”><i
+                                        class="lab la-github cal"></i><span class="date link-custom">GitHub Repository
+                                        Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </section>
+    </div>
+    <!-- <div id="content-wrapper">
+        <section id="certificates" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <a href="/addCertificates">
+                            <h6 class="text-brand">CERTIFICATES</h6>
+                        </a>
+                        <h1>My Certificates</h1>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide rounded-4">
+
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+                                    aria-label="Slide 4"></button>
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4"
+                                    aria-label="Slide 5"></button>
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5"
+                                    aria-label="Slide 6"></button>
+                            </div>
+
+                            <div class="carousel-inner rounded-4 shadow-effect">
+
+                                <div class="carousel-item active" data-bs-interval="10000">
+                                    <a href="https://online.codingblocks.com/app/certificates/CBOL-246718-36c8"
+                                        target=”_blank”>
+                                        <img src="./static/myapp/images/django.png" class="d-block" alt="No Image (:">
+                                    </a>
+                                </div>
+
+                                <div class="carousel-item" data-bs-interval="10000">
+                                    <a href="https://www.coursera.org/account/accomplishments/certificate/85H3VYPN3RVA"
+                                        target=”_blank”>
+                                        <img src="./static/myapp/images/introduction_to_backend.png" class="d-block"
+                                            alt="No Image (:">
+                                    </a>
+                                </div>
+
+                                <div class="carousel-item" data-bs-interval="10000">
+                                    <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/AAS95WRRCS9T"
+                                        target=”_blank”>
+                                        <img src="./static/myapp/images/python_for_everybody.png" class="d-block"
+                                            alt="No Image (:">
+                                    </a>
+                                </div>
+
+                                <div class="carousel-item" data-bs-interval="10000">
+                                    <a href="https://online.codingblocks.com/app/certificates/CBOL-246719-0d00"
+                                        target=”_blank”>
+                                        <img src="./static/myapp/images/java.png" class="d-block" alt="No Image (:">
+                                    </a>
+                                </div>
+
+                                <div class="carousel-item" data-bs-interval="10000">
+                                    <a href="https://www.udemy.com/certificate/UC-beb5876b-7126-4d39-98b3-c86a40b9fdf2/"
+                                        target=”_blank”>
+                                        <img src="./static/myapp/images/tkinter.png" class="d-block" alt="No Image (:">
+                                    </a>
+                                </div>
+
+                                <div class="carousel-item" data-bs-interval="10000">
+                                    <a href="https://www.coursera.org/account/accomplishments/certificate/EJGKEMYMA9HC"
+                                        target=”_blank”>
+                                        <img src="./static/myapp/images/version_control.png" class="d-block"
+                                            alt="No Image (:">
+                                    </a>
+                                </div>
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div> -->
+    <div id="content-wrapper">
+        <section id="services" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">SERVICES</h6>
+                        <h1>Services that I Provide</h1>
+                    </div>
+
+                    <div class="row gy-4">
+                        <div class="col-md-4" data-aos="fade-up">
+                            <div class="service p-4 bg-base rounded-4 shadow-effect">
+                                <div class="iconbox rounded-4">
+                                    <i class="las la-feather"></i>
+                                </div>
+                                <h5 class="mt-4 mb-2">BackEnd Development</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi natus
+                                    cum, nobis sapiente
+                                </p>
+                                <a href="#" class="link-custom">Read More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="service p-4 bg-base rounded-4 shadow-effect">
+                                <div class="iconbox rounded-4">
+                                    <i class="las la-feather"></i>
+                                </div>
+                                <h5 class="mt-4 mb-2">FrontEnd Development</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi natus
+                                    cum, nobis sapiente
+                                </p>
+                                <a href="#" class="link-custom">Read More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                            <div class="service p-4 bg-base rounded-4 shadow-effect">
+                                <div class="iconbox rounded-4">
+                                    <i class="las la-feather"></i>
+                                </div>
+                                <h5 class="mt-4 mb-2">GUI Development</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi natus
+                                    cum, nobis sapiente
+                                </p>
+                                <a href="#" class="link-custom">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+        <section id="reviews" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">REVIEWS</h6>
+                        <h1>What our subscribers say</h1>
+                    </div>
+                </div>
+
+                <div class="row gy-4">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="review p-4 shadow-effect bg-base rounded-4 h5">
+                            <div class="text-brand">
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                            </div>
+                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
+                                quas error sit odit
+                                voluptates
+                                tempore! Laborum similique molestias dignissimos itaque blanditiis,
+                                adipisci ducimus saepe
+                                numquam, hic ea laudantium quae. Soluta!</p>
+                            <div class="person">
+                                <h5>Jon Doe</h5>
+                                <p class="mb-0">Twitter</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="review shadow-effect bg-base p-4 rounded-4 h5">
+                            <div class="text-brand">
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                            </div>
+                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
+                                quas error sit odit
+                                voluptates
+                                tempore! Laborum similique molestias dignissimos itaque blanditiis,
+                                adipisci ducimus saepe
+                                numquam, hic ea laudantium quae. Soluta!</p>
+                            <div class="person">
+                                <h5>Jon Doe</h5>
+                                <p class="mb-0">Twitter</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                        <div class="review shadow-effect bg-base p-4 rounded-4 h5">
+                            <div class="text-brand">
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                                <i class="las la-star"></i>
+                            </div>
+                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
+                                quas error sit odit
+                                voluptates
+                                tempore! Laborum similique molestias dignissimos itaque blanditiis,
+                                adipisci ducimus saepe
+                                numquam, hic ea laudantium quae. Soluta!</p>
+                            <div class="person">
+                                <h5>Jon Doe</h5>
+                                <p class="mb-0">Twitter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- <div id="content-wrapper">
+    <section id="blog" class="full-height px-lg-5">
+        <div class="container">
+            <div class="row pb-4" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h6 class="text-brand">BLOG</h6>
+                    <h1>My Blog Posts</h1>
+                </div>
+            </div>
+            <div class="row gy-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="card-custom rounded-4 bg-base shadow-effect card-height">
+                        <div class="card-custom-image rounded-4">
+                            <img src="/static/myapp/images/1.png" alt="" class="rounded-4">
+                        </div>
+                        <div class="card-custom-content p-4" data-aos="fade-up">
+                            <p class="text-brand mb-2">20 Dec,2020</p>
+                            <h5 class="mb-4">Startup Landing Page</h5>
+                            <a href="#" class="link-custom">Read More</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-custom rounded-4 bg-base shadow-effect card-height">
+                        <div class="card-custom-image rounded-4">
+                            <img src="/static/myapp/images/2.png" alt="" class="rounded-4">
+                        </div>
+                        <div class="card-custom-content p-4" data-aos="fade-up">
+                            <p class="text-brand mb-2">20 Dec,2020</p>
+                            <h5 class="mb-4">Startup Landing Page</h5>
+                            <a href="#" class="link-custom">Read More</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card-custom rounded-4 bg-base shadow-effect card-height">
+                        <div class="card-custom-image rounded-4">
+                            <img src="/static/myapp/images/2.png" alt="" class="rounded-4">
+                        </div>
+                        <div class="card-custom-content p-4" data-aos="fade-up">
+                            <p class="text-brand mb-2">20 Dec,2020</p>
+                            <h5 class="mb-4">Startup Landing Page</h5>
+                            <a href="#" class="link-custom">Read More</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->
+    <!-- <div id="content-wrapper">
+        <section id="contact" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row justify-content-center text-center ">
+                    <div class="col-lg-8 pb-4" data-aos="fade-up">
+                        <h6 class="text-brand">CONTACT</h6>
+                        <h1>Interested in working together? Let's talk</h1>
+                    </div>
+                    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
+                        <form action="#" class="row g-lg-3 gy-3">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" placeholder="Enter your email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" placeholder="Enter subject">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="" id="" rows="4" class="form-control"
+                                    placeholder="Enter your message"></textarea>
+                            </div>
+                            <div class="form-group col-md-12 d-grid">
+                                <button class="btn btn-brand " type="submit">Contact Me</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> -->
+
+    <!-- :root {
+    --color-body: #b6cbce;
+    --color-heading: #eef3db;
+    --color-base: #033f47;
+    --color-base2: #022a30;
+    --color-brand: #e0f780;
+    --color-brand2: #deff58;
+    --sidbar-width: 240px;
+    --font-base: "Bai Jamjuree";
+}  -->
+
+    <!-- :root {
+    --color-body: #b6cbce;
+    --color-heading: #08fcd9;
+    --color-base: #2a2a2b;
+    --color-base2: #1c1c1d;
+    --color-brand: #167769;
+    --color-brand2: #d1eae6;
+    --sidbar-width: 240px;
+    --font-base: "Bai Jamjuree";
+} -->
+    <div id="content-wrapper">
+        <footer class="py-5 px-lg-5">
+            <div class="container">
+                <div class="row gy-4 justify-content-between">
+                    <div class="col-auto">
+                        <p class="mb-0">@<span class="yearJS"></span> John Doe. All rights reserved
+                        </p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="social-icons">
+                            <a href="https://github.com/AyushKumar-23"><i class="lab la-github"></i></a>
+                            <a href="https://www.linkedin.com/in/ayushkumar23/"><i class="lab la-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        var icon = document.getElementById("toggleDark");
+        icon.onclick = function () {
+            document.body.classList.toggle("darkTheme");
+            if (document.body.classList.contains("darkTheme")) {
+                icon.classList.toggle("la-sun");
+                icon.classList.toggle("la-moon");
+            } else {
+                icon.classList.toggle("la-sun");
+                icon.classList.toggle("la-moon");
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        $('.js-scroll-trigger').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    </script>
+</body>
+
+</html>

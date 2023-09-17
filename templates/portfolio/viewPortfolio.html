@@ -1,0 +1,886 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylePortfolio.css' %}">
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarNav">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
+
+        :root {
+            --color-body: #b6cbce;
+            --color-heading: #08fcd9;
+            --color-base: #2a2a2b;
+            --color-base2: #1c1c1d;
+            --color-brand: #189997;
+            --color-brand2: #bbdfda;
+            --sidbar-width: 240px;
+            --navbar-color: linear-gradient(rgba(3, 63, 71, 0.8), rgba(3, 63, 71, 0.8));
+            --font-base: "Bai Jamjuree";
+        }
+
+        .darkTheme {
+            --color-body: #042d65;
+            --color-heading: #094299;
+            --color-base: #cee2fe;
+            --color-base2: #9ec5fe;
+            --color-brand: #3c8bfc;
+            --color-brand2: #0c6efc;
+            --navbar-color: #6ea8fe;
+            --sidbar-width: 240px;
+            --font-base: "Bai Jamjuree";
+        }
+
+        body {
+            background-color: var(--color-base2);
+            color: var(--color-body);
+            font-family: var(--font-base);
+            word-wrap: break-word;
+            /* 
+  align-items: center;
+  justify-content: center; */
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: var(--color-heading);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-body);
+        }
+
+        a:hover {
+            color: var(--color-brand);
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .text-brand {
+            color: var(--color-brand);
+        }
+
+        .full-height {
+            min-height: 100vh;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 0 80px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bg-base {
+            background-color: var(--color-base);
+        }
+
+        .shadow-effect {
+            transition: all 0.5s;
+        }
+
+        .shadow-effect:hover {
+            box-shadow: -6px 6px 0 0 var(--color-brand);
+        }
+
+        .iconbox {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background-color: var(--color-brand);
+            color: var(--color-base);
+        }
+
+        .navbar-img {
+            height: 220px;
+            width: 180px;
+        }
+
+        /* navbar */
+
+        .navbar {
+            background-color: var(--color-base);
+        }
+
+        .navbar .nav-link {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--color-brand);
+        }
+
+        .navbar .nav-link.active {
+            color: var(--color-brand);
+        }
+
+        .navbar-brand {
+            display: flex;
+            flex-direction: column;
+            width: 100% !important;
+        }
+
+        .navbar-brand div {
+            text-align: center;
+        }
+
+        .navbar-brand img {
+            display: block !important;
+            margin: auto;
+        }
+
+        @media (max-height: 750px) {
+            .nav-item {
+                margin-top: 0;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .nav-link {
+                margin-top: 0;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            #toggleDark {
+                margin-top: 0;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .las {
+                margin-top: 0;
+                margin-bottom: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .navbar-img {
+                margin-top: 0;
+                height: 140px;
+                width: 100px;
+            }
+
+            .navbar-brand {
+                position: relative;
+                left: 0;
+                margin-top: 0;
+                margin-bottom: 10px;
+                margin-left: 0;
+                top: 0;
+                height: 140px;
+                width: 100px;
+            }
+
+            .email_id {
+                margin: 0;
+                padding: 0;
+            }
+
+            .navbar-div {
+                position: relative;
+                top: 55px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .navbar-brand img {
+                border: 8px solid var(--color-brand);
+                display: none !important;
+            }
+
+            .navbar-brand div {
+                text-align: left;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .navbar {
+                min-height: 100vh;
+                width: var(--sidbar-width);
+                background: var(--navbar-color);
+                background-size: cover;
+                background-position: center;
+            }
+
+            .navbar-brand img {
+                border: 8px solid var(--color-brand);
+            }
+
+            #content-wrapper {
+                padding-left: var(--sidbar-width);
+                z-index: -1;
+            }
+
+            /* ACCOUNT ICON */
+
+            .account-icon {
+                position: fixed;
+                top: 4%;
+                right: 0%;
+                width: 200px;
+                display: flex;
+                flex-direction: column;
+                margin: 1px;
+                text-align: right;
+                z-index: 1;
+            }
+
+            .account-icon a i {
+                margin-right: 10px;
+                background-color: var(--color-brand);
+                height: 35px;
+                width: 35px;
+                color: var(--color-base);
+                text-align: center;
+                line-height: 35px;
+                transition: all 0.5s;
+            }
+
+            .account-icon a:hover i {
+                transform: rotate(360deg);
+                color: var(--color-body);
+            }
+
+            .account-icon a {
+                text-decoration: none;
+                text-transform: uppercase;
+                padding: 10px;
+                font-size: 22px;
+                /* margin: 2px; */
+                margin: 1px;
+                text-align: left;
+                border-radius: 50px 0px 0px 50px;
+                transform: translate(150px, 0px);
+                transition: all 0.5s;
+            }
+
+            .account-icon a:hover {
+                transform: translate(0, 0);
+            }
+
+            .account {
+                background-color: var(--color-base);
+                color: white;
+                z-index: 1;
+                width: 220px;
+            }
+
+            .account:hover {
+                color: var(--color-body);
+            }
+
+            /* .nav-link {
+        padding-bottom: 0;
+        padding-top: 0;
+    } */
+        }
+
+        /* BTN */
+        .btn {
+            padding: 12px 28px;
+            font-weight: 700;
+        }
+
+        .btn-brand {
+            background-color: var(--color-brand);
+            border-color: var(--color-brand);
+            color: var(--color-base);
+        }
+
+        .btn-brand:hover,
+        .btn-brand:focus {
+            background-color: var(--color-brand2);
+            color: var(--color-base);
+            border-color: var(--color-brand2);
+        }
+
+        .link-custom {
+            font-weight: 700;
+            position: relative;
+        }
+
+        .link-custom::after {
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: var(--color-brand);
+            position: absolute;
+            left: 0;
+            top: 110%;
+            transition: all 0.4s;
+        }
+
+        .link-custom:hover::after {
+            width: 100%;
+        }
+
+        .card-custom .card-custom-image {
+            overflow: hidden;
+        }
+
+        .card-custom .card-custom-image img {
+            min-height: 50vh;
+            height: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .card-custom:hover .card-custom-image img {
+            transform: scale(1.1);
+        }
+
+        #addSkill .form-control,
+        #contact .form-control {
+            background-color: var(--color-base);
+            border-color: var(--color-base);
+            color: var(--color-body);
+        }
+
+        #addSkill .form-control:hover,
+        #contact .form-control:hover {
+            border-color: var(--color-brand);
+            box-shadow: none;
+        }
+
+        #addSkill .form-control::placeholder,
+        #contact .form-control::placeholder {
+            color: var(--color-body);
+        }
+
+        #addSkill input.form-control,
+        #contact input.form-control {
+            height: 44px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-base);
+            border-radius: 100px;
+            font-size: 24px;
+        }
+
+        #toggleDark {
+            font-size: 3em;
+            padding-top: 2rem;
+            padding-right: 1rem;
+        }
+
+        .carousel-item {
+            height: 75vh;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .carousel-item img {
+            height: 75vh;
+            width: 100%;
+        }
+
+        .about-card {
+            height: 11rem;
+        }
+
+        .italics {
+            font-style: italic;
+        }
+
+        .date {
+            position: absolute;
+            padding-left: 4px;
+            padding-top: 3px;
+        }
+
+        .cal {
+            font-size: 1.5rem;
+            padding-top: 3px;
+        }
+
+        /* progressbar */
+        .progress {
+            background-color: var(--color-base);
+            height: 20px;
+        }
+
+        .progress-bar {
+            background-color: var(--color-brand);
+            height: 20px;
+            color: var(--color-base2);
+        }
+
+        .skill-heading {
+            color: var(--color-body);
+        }
+
+        /* ADD SKILLS */
+        .home-button {
+            margin-top: 16px;
+        }
+
+        .email_id {
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* workImage-height */
+        .workImage-height {
+            min-height: 2rem;
+            height: 2rem;
+            max-height: 2rem;
+        }
+
+        /* ADDITIONAL */
+        .text {
+            text-transform: uppercase;
+        }
+
+        /* .card-container {
+  display: flex;
+  flex-wrap: 3;
+  justify-content: space-between;
+} */
+
+        .service {
+            height: auto;
+        }
+
+        .homeButton {
+            position: fixed;
+            margin-top: 2%;
+            margin-left: 94%;
+        }
+
+        .homeButton .homeButtonLink {
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="account-icon">
+        {% for accounts in accounts %}
+        {% if forloop.first %}
+        {% if accounts.linkdin %}
+        <a href="#" class="account" target=”_blank”><i class="lab la-linkedin rounded-4"></i>LinkedIn</a>
+        {% endif %}
+        {% if accounts.github %}
+        <a href="#" class="account" target=”_blank”><i class="lab la-github rounded-4"></i>GitHub</a>
+        {% endif %}
+        {% if accounts.leetcode %}
+        <a href="#" class="account" target=”_blank”><i class="las la-code rounded-4"></i>LeetCode</a>
+        {% endif %}
+        {% if accounts.codechef %}
+        <a href="#" class="account" target=”_blank”><i class="las la-closed-captioning rounded-4"></i>CodeChef</a>
+        {% endif %}
+        {% if accounts.hackerrank %}
+        <a href="#" class="account" target=”_blank”><i
+                class="lab la-hackerrank rounded-4"></i><span>HackerRank</span></a>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container flex-lg-column">
+            <div class="navbar-brand mx-lg-auto">
+                {% for home in home %}
+                {% if forloop.first %}
+                <span class="h3 fw-bold d-block d-lg-none">{{home.name}}</span>
+                <img src={{path_to_img}} class="d-none d-lg-block rounded-circle navbar-img" alt="">
+                <div>
+                    <i class="las la-envelope"></i><span class="email_id my-0 link-custom"><a
+                            href="mailto:{{user.email}}">{{home.email}}</a></span>
+                </div>
+                <div>
+                    <i class="las la-phone"></i><span class="email_id my-0 link-custom"><a
+                            href="tel:+{{home.phoneNo}}">{{home.phoneNo}}</a></span>
+
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navbar-div ms-auto flex-lg-column text-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#work">Work</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link js-scroll-trigger" href="#reviews">Reviews</a>
+                    </li>
+                    <li class="nav-item js-scroll-trigger">
+                        <i id="toggleDark" class="las la-sun"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="content-wrapper">
+
+        <!-- HOME -->
+        <section id="home" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10">
+                        {% for home in home %}
+                        {% if forloop.first %}
+                        <h1 class="display-4 fw-bold text" data-aos="fade-up">Hi! I'M <span
+                                class="text-brand">{{home.name}} ,
+                                {{home.jobRole}}</span> FROM {{home.location}}</h1>
+                        <p class="lead mt-2 mb-4" data-aos="fade-up" data-aos-delay="300">{{home.shortSummary}}</p>
+                        {% endif %}
+                        {% endfor %}
+                        <div data-aos="fade-up" data-aos-delay="600">
+
+                            <a href="Resume.pdf" download="Resume.pdf" class="btn btn-brand">
+                                Download CV
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="content-wrapper">
+        <!-- SKILLS -->
+        <section id="skills" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">
+                            SKILLS
+                        </h6>
+
+                        <h1>My Technical Level</h1>
+                    </div>
+
+                    <div class="row gy-4">
+                        {% for skill in skills %}
+
+                        <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <h6 class="skill-heading">{{skill.skill}}</h6>
+                            <div class="progress-animate">
+                                <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar " style="width: {{skill.expertise}}%">{{skill.expertise}}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+
+        <!-- ABOUT -->
+        <section id="about" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">ABOUT</h6>
+                        <h1>My Education & Experience</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">Education</h3>
+                        <div class="row gy-4">
+                            {% for education in education %}
+                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
+                                <div class="bg-base p-4 rounded-4 shadow-effect about-card">
+                                    <h5>{{education.universityName}}</h5>
+                                    <p class="text-brand mb-2">{{education.branch}}</p>
+                                    <p class="mb-0"><span class="italics">CGPA- </span>{{education.percentage}}</p>
+                                    <i class="las la-calendar-week cal"></i><span
+                                        class="mb-0 italics date">{{education.startYear}}-{{education.endYear}}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">EXPERIENCE</h3>
+
+                        <div class="row gy-4">
+                            {% for experience in experience %}
+                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
+                                <div class="bg-base p-4 rounded-4 shadow-effect about-card">
+                                    <h5>{{experience.companyName}}</h5>
+                                    <p class="text-brand mb-2"></p>
+                                    <p class="mb-0 italics">{{experience.jobRole}}</p>
+                                    <i class="las la-calendar-week cal"></i><span
+                                        class="mb-0 italics date">{{experience.startYear}}-{{experience.endYear}}</span><br>
+                                    <a href="{{experience.githubRepo}}"><i class="lab la-github cal"></i><span
+                                            class="date link-custom">GitHub Repository Link</span></a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+
+        <!-- WORK -->
+        <section id="work" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">WORK</h6>
+                        </a>
+                        <h1>My Recent Projects</h1>
+                    </div>
+                </div>
+
+                <div class="row gy-4">
+                    {% for work in work %}
+                    <div class="col-md-6">
+                        <div class="card-custom rounded-4 bg-base shadow-effect card-height p-3" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <div class="card-custom-content p-4" data-aos="fade-up">
+                                <h4>{{work.projectName}}</h4>
+                                <p>{{work.description}}</p>
+                                <a href="{{work.githubRepo}}"><i class="lab la-github cal"></i><span
+                                        class="date link-custom">GitHub Repository
+                                        Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+
+        <!-- SERVICES -->
+        <section id="services" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">SERVICES</h6>
+                        <h1>Services that I Provide</h1>
+                    </div>
+
+                    <div class="card-container">
+                        <div class="row gy-4">
+                            {% for services in services %}
+                            <div class="col-md-4" data-aos="fade-up">
+                                <div class="service p-2 bg-base rounded-4 shadow-effect">
+                                    <div class="iconbox rounded-4">
+                                        <i class="las la-feather"></i>
+                                    </div>
+                                    <h5 class="mt-4 mb-2">{{services.serviceName}}</h5>
+                                    <p>{{services.description}}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="content-wrapper">
+
+        <!-- REVIEWS -->
+        <section id="reviews" class="full-height px-lg-5">
+            <div class="container">
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">REVIEWS</h6>
+                        <h1>What our subscribers say</h1>
+                    </div>
+                </div>
+
+                <div class="row gy-4">
+                    {% for reviews in reviews %}
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="review p-5 shadow-effect bg-base rounded-4 h5">
+                            <div class="text-brand">
+                                {% for star in "x"|ljust:reviews.stars %}
+                                <i class="las la-star"></i>
+                                {% endfor %}
+                            </div>
+                            <p class="my-3">{{reviews.review}}</p>
+                            <div class="person">
+                                <h5>{{reviews.reviewerName}}</h5>
+                                <p class="mb-0">{{reviews.platform}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- <button class="homeButton">
+        <a class="homeButtonLink" href="{% url 'home' %}">
+            Home
+        </a>
+    </button> -->
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        var icon = document.getElementById("toggleDark");
+        icon.onclick = function () {
+            document.body.classList.toggle("darkTheme");
+            if (document.body.classList.contains("darkTheme")) {
+                icon.classList.toggle("la-sun");
+                icon.classList.toggle("la-moon");
+            } else {
+                icon.classList.toggle("la-sun");
+                icon.classList.toggle("la-moon");
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        $('.js-scroll-trigger').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    </script>
+    <script>
+        AOS.init();
+
+        // You can also pass an optional settings object
+        // below listed default settings
+        AOS.init({
+            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+            offset: 120, // offset (in px) from the original trigger point
+            delay: 0, // values from 0 to 3000, with step 50ms
+            duration: 700, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: false, // whether animation should happen only once - while scrolling down
+            mirror: false, // whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+        });
+    </script>
+    <script>
+        // Get all card elements
+        var cards = document.querySelectorAll('.service');
+
+        // Find the height of the largest card
+        var maxHeight = 0;
+        cards.forEach(function (card) {
+            var cardHeight = card.clientHeight;
+            if (cardHeight > maxHeight) {
+                maxHeight = cardHeight;
+            }
+        });
+
+        // Set the height of all cards to the height of the largest card
+        cards.forEach(function (card) {
+            card.style.height = maxHeight + 'px';
+        });
+    </script>
+    <script>
+        // Get all card elements
+        var cards = document.querySelectorAll('.card-custom');
+
+        // Find the height of the largest card
+        var maxHeight = 0;
+        cards.forEach(function (card) {
+            var cardHeight = card.clientHeight;
+            if (cardHeight > maxHeight) {
+                maxHeight = cardHeight;
+            }
+        });
+
+        // Set the height of all cards to the height of the largest card
+        cards.forEach(function (card) {
+            card.style.height = maxHeight + 'px';
+        });
+    </script>
+    <script>
+        // Get all card elements
+        var cards = document.querySelectorAll('.review');
+
+        // Find the height of the largest card
+        var maxHeight = 0;
+        cards.forEach(function (card) {
+            var cardHeight = card.clientHeight;
+            if (cardHeight > maxHeight) {
+                maxHeight = cardHeight;
+            }
+        });
+
+        // Set the height of all cards to the height of the largest card
+        cards.forEach(function (card) {
+            card.style.height = maxHeight + 'px';
+        });
+    </script>
+</body>
+
+</html>

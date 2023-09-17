@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="outerContainer">
+    <div class="innerContainer">
+        <div class="image-container" data-light-image="/static/images/accountsDark.svg" data-dark-image="/static/images/accountsLight.svg">
+            <img id="eduImage" class="imgContainer" src="" alt="">
+        </div>
+        <div class="btnContainer">
+            <!-- LIST VIEW -->
+
+            <!-- CREATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                ADD ACCOUNT
+            </button>
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="modal-content" data-bs-theme="dark">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Account Profile Url</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="id_linkdin">Linkdin:</label>
+                                    <input class="form-control" type="url" name="linkdin" maxlength="200"
+                                        id="id_linkdin">
+                                </div>
+                                <div>
+                                    <label for="id_github">Github:</label>
+                                    <input class="form-control" type="url" name="github" maxlength="200" id="id_github">
+                                </div>
+                                <div>
+                                    <label for="id_codechef">Codechef:</label>
+                                    <input class="form-control" type="url" name="codechef" maxlength="200"
+                                        id="id_codechef">
+                                </div>
+                                <div>
+                                    <label for="id_leetcode">Leetcode:</label>
+                                    <input class="form-control" type="url" name="leetcode" maxlength="200"
+                                        id="id_leetcode">
+                                </div>
+                                <div>
+                                    <label for="id_hackerrank">Hackerrank:</label>
+                                    <input class="form-control" type="url" name="hackerrank" maxlength="200"
+                                        id="id_hackerrank">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DELETE SKILL -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropDelete">
+                DELETE ACCOUNT
+            </button>
+
+            <div class="modal fade" id="staticBackdropDelete" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleDelete" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Skill</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                {% for account in accounts %}
+                                <div class="carousel-inner">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+                                        <label>LinkdIn:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{account.linkdin}} aria-label="Disabled input example"
+                                            disabled>
+                                        <label>GitHub:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{account.github}} aria-label="Disabled input example" disabled>
+                                        <label>LeetCode:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{account.leetcode}} aria-label="Disabled input example"
+                                            disabled>
+                                        <label>CodeChef:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{account.codechef}} aria-label="Disabled input example"
+                                            disabled>
+                                        <label>HackerRank:</label>
+                                        <input class="form-control disabledInput" type="text"
+                                            placeholder={{account.hackerrank}} aria-label="Disabled input example"
+                                            disabled>
+
+                                        <form action="{% url 'accountsDelete' account.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="submit deleteButton" type="submit" value="Delete">Delete
+                                                Skill</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDelete" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDelete" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPDATE VIEW -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+                UPDATE ACCOUNT
+            </button>
+
+            <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+
+                    <div class="modal-content">
+                        <div id="carouselExampleUpdate" class="carousel slide">
+                            <div class="modal-header" data-bs-theme="dark">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Account URLs</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <div class="carousel-inner">
+                                    {% for account in accounts %}
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+                                        <div>
+                                            <label>LinkdIn:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder={{account.linkdin}} aria-label="Disabled input example"
+                                                disabled>
+                                        </div>
+                                        <div>
+                                            <label>GitHub:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder={{account.github}} aria-label="Disabled input example"
+                                                disabled>
+                                        </div>
+                                        <div>
+                                            <label>LeetCode:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder={{account.leetcode}} aria-label="Disabled input example"
+                                                disabled>
+                                        </div>
+                                        <div>
+                                            <label>CodeChef:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder={{account.codechef}} aria-label="Disabled input example"
+                                                disabled>
+                                        </div>
+                                        <div>
+                                            <label>HackerRank:</label>
+                                            <input class="form-control disabledInput" type="text"
+                                                placeholder={{account.hackerrank}} aria-label="Disabled input example"
+                                                disabled>
+                                        </div>
+                                        <a href="{% url 'accountsUpdate' account.id %}" style="text-decoration: none;">
+                                            <button class="submit deleteButton" type="submit">
+                                                Click Here, If You Want To Update This Record!
+                                            </button>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleUpdate" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
