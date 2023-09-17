@@ -107,6 +107,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 DATABASES = {
     'default': dj_database_url.config(
+        default="postgres://portfoliobuilderdb_user:0SazrTFKYS1R40srovnn12ON6WxJqyoo@dpg-ck3ga7r6fquc73cd54c0-a/portfoliobuilderdb",
         conn_max_age=600,
         conn_health_checks=True,
     ),
@@ -172,14 +173,3 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'userapp.CustomUser'
-
-# DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': 'neondb',
-#     'USER': 'kumarayush009',
-#     'PASSWORD': '5BAES4ViycIt',
-#     'HOST': 'ep-raspy-cake-79212450.ap-southeast-1.aws.neon.tech',
-#     'PORT': '5432',
-#   }
-# }
