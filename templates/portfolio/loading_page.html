@@ -14,11 +14,36 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbarNavAltMarkup">
+    <div style="display:flex; justify-content: center; align-items: center;">
+        <lottie-player src="https://lottie.host/6a5fb1d2-36b0-4292-ae78-e622c98c7be7/Wmf8E08FA5.json"
+            background="transparent" speed="1" style="width: 600px; height: 600px;" loop autoplay></lottie-player>
+    </div>
+
+    <script>
+        function checkServerHealth() {
+            fetch('') // Your health check endpoint
+                .then(response => {
+                    if (response.status === 200) {
+                        // Server is healthy, redirect to the home page
+                        window.location.href = "{% url 'home' %}"; // Replace with your home page URL
+                    } else {
+                        // Server is still starting up or not healthy, check again after a delay
+                        setTimeout(checkServerHealth, 1000); // Check every 1 second
+                    }
+                })
+                .catch(error => {
+                    // Error occurred during health check, check again after a delay
+                    setTimeout(checkServerHealth, 1000); // Check every 1 second
+                });
+        }
+
+        // Start checking server health when the page loads
+        window.onload = function () {
+            checkServerHealth();
+        };
+    </script>
 
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <lottie-player src="https://lottie.host/6a5fb1d2-36b0-4292-ae78-e622c98c7be7/Wmf8E08FA5.json"
-        background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"

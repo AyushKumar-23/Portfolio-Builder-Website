@@ -8,17 +8,39 @@ import os
 from django.template import loader
 from django.forms.models import model_to_dict
 from PortfolioBuilder import settings
-from django.views import View
+from django.db import connection
+from django.http import JsonResponse
 
 # Create your views here.
-class LandingPage(View):
-    def get(self,request,*args,**kwargs):
-        try:
-            from django.db import connection
-            connection.ensure_connection()
-            return HttpResponse('<script>window.location.href = "home/";</script>')
-        except Exception as e:
-            return render(request,'portfolio/loading_page.html',{})
+
+def all_dependencies_are_ready():
+    try:
+        connection.ensure_connection()
+        return True
+    except Exception as e:
+        return False
+    
+
+def LandingPage(request):
+    # Check if your application's dependencies are ready
+    # You can add additional checks here as needed
+    if all_dependencies_are_ready():
+        return render(request,'portfolio/home.html',{})
+    else:
+        return render(request,'portfolio/loading_page.html',{})
+
+
+# def LandingPage(request):
+#     return render(request,'portfolio/loading_page.html',{})
+    
+# class LandingPage(View):
+    # def get(self,request,*args,**kwargs):
+    #     try:
+    #         from django.db import connection
+    #         connection.ensure_connection()
+    #         return HttpResponse('<script>window.location.href = "home/";</script>')
+    #     except Exception as e:
+    #         return render(request,'portfolio/loading_page.html',{})
 
 def dummy_portfolio(request):
     return render(request,'portfolio/dummyPortfolio.html',{})
