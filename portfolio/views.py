@@ -10,24 +10,42 @@ from django.forms.models import model_to_dict
 from PortfolioBuilder import settings
 from django.db import connection
 from django.http import JsonResponse
+import requests
 
 # Create your views here.
 
 def all_dependencies_are_ready():
     try:
-        connection.ensure_connection()
-        return True
-    except Exception as e:
-        return False
-    
+        # Replace with a known URL on your Render-hosted Django application
+        response = requests.get("https://portfoliobuilder.onrender.com/")
+        
+        # Check if the response status code indicates success (e.g., 200 OK)
+        if response.status_code == 200:
+            return True
+    except requests.exceptions.RequestException:
+        pass  # Ignore exceptions, continue checking
 
-def LandingPage(request):
+    return False
+
+# def all_dependencies_are_ready():
+#     try:
+#         connection.ensure_connection()
+#         return True
+#     except Exception as e:
+#         return False
+
+def health_check(request):
     # Check if your application's dependencies are ready
     # You can add additional checks here as needed
     if all_dependencies_are_ready():
         return render(request,'portfolio/home.html',{})
     else:
         return render(request,'portfolio/loading_page.html',{})
+
+    
+
+def LandingPage(request):
+    return render(request,'portfolio/loading_page.html',{})
 
 
 # def LandingPage(request):
