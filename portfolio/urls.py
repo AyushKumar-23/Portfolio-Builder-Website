@@ -52,7 +52,6 @@ urlpatterns = [
 
     path('dummy_portfolio/',views.dummy_portfolio,name="dummy_portfolio"),
     path('home/',views.Home.as_view(),name='home'),
-    path('health-check/', views.health_check, name='health_check'),
     path('',views.LandingPage,name="landing_page"),
     # path('',views.LandingPage.as_view(),name="landing_page")
 ]

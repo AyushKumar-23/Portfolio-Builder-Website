@@ -8,57 +8,17 @@ import os
 from django.template import loader
 from django.forms.models import model_to_dict
 from PortfolioBuilder import settings
-from django.db import connection
-from django.http import JsonResponse
-import requests
+from django.views import View
 
-# Create your views here.
-
-def all_dependencies_are_ready():
-    try:
-        # Replace with a known URL on your Render-hosted Django application
-        response = requests.get("https://portfoliobuilder.onrender.com/")
-        
-        # Check if the response status code indicates success (e.g., 200 OK)
-        if response.status_code == 200:
-            return True
-    except requests.exceptions.RequestException:
-        pass  # Ignore exceptions, continue checking
-
-    return False
-
-# def all_dependencies_are_ready():
-#     try:
-#         connection.ensure_connection()
-#         return True
-#     except Exception as e:
-#         return False
-
-def health_check(request):
-    # Check if your application's dependencies are ready
-    # You can add additional checks here as needed
-    if all_dependencies_are_ready():
-        return render(request,'portfolio/home.html',{})
-    else:
-        return render(request,'portfolio/loading_page.html',{})
-
-    
-
-def LandingPage(request):
-    return render(request,'portfolio/loading_page.html',{})
-
-
-# def LandingPage(request):
-#     return render(request,'portfolio/loading_page.html',{})
-    
-# class LandingPage(View):
-    # def get(self,request,*args,**kwargs):
-    #     try:
-    #         from django.db import connection
-    #         connection.ensure_connection()
-    #         return HttpResponse('<script>window.location.href = "home/";</script>')
-    #     except Exception as e:
-    #         return render(request,'portfolio/loading_page.html',{})
+# Create your views here.    
+class LandingPage(View):
+    def get(self,request,*args,**kwargs):
+        try:
+            from django.db import connection
+            connection.ensure_connection()
+            return HttpResponse('<script>window.location.href = "home/";</script>')
+        except Exception as e:
+            return render(request,'portfolio/loading_page.html',{})
 
 def dummy_portfolio(request):
     return render(request,'portfolio/dummyPortfolio.html',{})
